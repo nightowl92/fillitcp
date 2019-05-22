@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 23:11:03 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/21 12:24:18 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/22 11:32:15 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,12 @@ int		checktab(char **s, char in[4][4], int n, int m, int max2)
 		while (++j < 4)
 		{
 			if (s[i + n][j + m] != '.' && in[i][j] != '.')
+			{
 				return (0);
+			}
 			if (s[i + n][j + m] == '.')
 			{	
+				printf("max1 %d max2 %d\n",max1,max2);
 				if (i + n > j + m)
 					max1 = i + n;
 				else
@@ -127,6 +130,9 @@ int		fit(char **s, char ttr[4][4], int n)
 	int i;
 	int j;
 	i = -1;
+printf("%d\n",n);
+printresult(n, s);
+
 	while (++i < 6)
 	{
 		j= -1;
@@ -223,10 +229,11 @@ int		ft_try(char tetris[28][4][4], int len, char ***s)
 	int		max;
 	int		*list;
 
-	max = 4;
-	list = newlist(3);
+	max = 5;
+	list = newlist(7);
 	newtab(s, len * 2);
-	while(!backtrack(tetris, s, list, ++max))
-	;
+	int i = -1;
+	while(++i <= max)
+		backtrack(tetris, s, list, i);
 	return (0);
 }

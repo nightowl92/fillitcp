@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 19:07:32 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/20 20:40:41 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/22 12:40:36 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		ft_checklen(ssize_t nb)
 	return (0);
 }
 
-static void		printresult(int max, char **s)
+void		printresult(int max, char **s)
 {
 	int i;
 	int j;
@@ -97,13 +97,19 @@ int				main(int argc, char **argv)
 	char	tetris[28][4][4];
 	int		fd;
 	char	**s;
+	int cal;
 
 	fd = open(argv[1], O_RDONLY);
 	if (ft_checklen((buflen = read(fd, buf, 546))))
 		return (ft_error());
-	if (parser(buf))
+	if (!(cal = parser(buf, buflen)))
+	{
+		printf("return %d\n", cal);
 		return (ft_error());
+		}
+		printf("return %d\n", cal);
+		/*
 	buftotab(tetris, buf, buflen, 0);
-	printresult(ft_try(tetris, puttocorn(tetris, buflen), &s), s);
+	printresult(ft_try(tetris, puttocorn(tetris, buflen), &s), s);*/
 	return (0);
 }
