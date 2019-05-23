@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 14:17:15 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/22 11:43:31 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/22 22:00:03 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ char **solver(char tetris[28][4][4], int len);
 int ft_try(char tetris[28][4][4], int len, char	***s);
 int	to_corner(char s[4][4]);
 void    printresult(int max, char **s);
+int		freetab(char ***s);
+int righter(char s[4][4]);
+int lower(char s[4][4]);
 
 # endif

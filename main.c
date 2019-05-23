@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 19:07:32 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/22 12:40:36 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/23 14:00:26 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,21 +95,17 @@ int				main(int argc, char **argv)
 	int		buflen;
 	char	buf[545];
 	char	tetris[28][4][4];
-	int		fd;
 	char	**s;
-	int cal;
+	int len;
 
-	fd = open(argv[1], O_RDONLY);
-	if (ft_checklen((buflen = read(fd, buf, 546))))
+	if ((buflen = read(open(argv[1], O_RDONLY), buf, 546)) > 544 || buflen < 19)
 		return (ft_error());
-	if (!(cal = parser(buf, buflen)))
-	{
-		printf("return %d\n", cal);
+	if (!(len = parser(buf, buflen)))
 		return (ft_error());
-		}
-		printf("return %d\n", cal);
-		/*
 	buftotab(tetris, buf, buflen, 0);
-	printresult(ft_try(tetris, puttocorn(tetris, buflen), &s), s);*/
+	puttocorn(tetris, buflen);
+	ft_try(tetris, len, &s);
+	printresult(ft_try(tetris, len, &s), s);
+	freetab(&s);
 	return (0);
 }

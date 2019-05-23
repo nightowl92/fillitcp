@@ -16,7 +16,7 @@ static int upper(char s[4][4])
 	return (0);
 }
 
-static int lower(char s[4][4])
+int lower(char s[4][4])
 {
 	int i;
 	int j;
@@ -49,7 +49,7 @@ static int lefter(char s[4][4])
 
 }
 
-static int righter(char s[4][4])
+int righter(char s[4][4])
 {
 	int i;
 	int j;
@@ -70,7 +70,8 @@ int *getedges(char s[4][4])
 {
 	int *out;
 
-	out = malloc(sizeof(int) * 4);
+	if (!(out = malloc(sizeof(int) * 4)))
+	return (NULL);
 	out[0] = upper(s);
 	out[1] = lower(s);
 	out[2] = lefter(s);
