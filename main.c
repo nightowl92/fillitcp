@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 19:07:32 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 14:00:26 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/24 10:57:28 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int				main(int argc, char **argv)
 		return (ft_error());
 	buftotab(tetris, buf, buflen, 0);
 	puttocorn(tetris, buflen);
-	ft_try(tetris, len, &s);
-	printresult(ft_try(tetris, len, &s), s);
+	buflen = solver(tetris, len, s);
+	//printresult(buflen, s);
 	freetab(&s);
 	return (0);
 }
