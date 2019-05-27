@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tool_back.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:40:08 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 14:40:11 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/25 22:14:25 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	**cpytab(char **s)
 {
-	int i;
-	int j;
-	int size;
-	char **new;
+	int		i;
+	int		j;
+	int		size;
+	char	**new;
 
 	i = -1;
-    size = -1;
-    while (s[++size] != NULL)
-        ;
-	newtab(&new, size);
+	size = -1;
+	while (s[++size] != NULL)
+		;
+	new = newtab(size);
 	while (s[++i])
 	{
 		j = -1;

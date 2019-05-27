@@ -6,13 +6,13 @@
 /*   By: stherkil <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:40:48 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 14:40:50 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:08:09 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int upper(char s[4][4])
+static int	upper(char s[4][4])
 {
 	int i;
 	int j;
@@ -28,7 +28,7 @@ static int upper(char s[4][4])
 	return (0);
 }
 
-int lower(char s[4][4])
+int			lower(char s[4][4])
 {
 	int i;
 	int j;
@@ -44,7 +44,7 @@ int lower(char s[4][4])
 	return (0);
 }
 
-static int lefter(char s[4][4])
+static int	lefter(char s[4][4])
 {
 	int i;
 	int j;
@@ -58,10 +58,9 @@ static int lefter(char s[4][4])
 				return (j);
 	}
 	return (0);
-
 }
 
-int righter(char s[4][4])
+int			righter(char s[4][4])
 {
 	int i;
 	int j;
@@ -75,19 +74,17 @@ int righter(char s[4][4])
 				return (j);
 	}
 	return (0);
-
 }
 
-int *getedges(char s[4][4])
+int			*getedges(char s[4][4])
 {
 	int *out;
 
 	if (!(out = malloc(sizeof(int) * 4)))
-	return (NULL);
+		return (NULL);
 	out[0] = upper(s);
 	out[1] = lower(s);
 	out[2] = lefter(s);
 	out[3] = righter(s);
-
 	return (out);
 }

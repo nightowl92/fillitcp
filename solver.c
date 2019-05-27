@@ -6,30 +6,59 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:17:25 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 22:26:03 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 11:58:53 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	newtab(char ***s, int size)
+void				printresult(char **s, int i)
 {
-	int i;
+	int j;
+	int max;
 
-	i = -1;
-	*s = (char**)malloc(sizeof(char*) * size + 1);
-
-	while (++i < size)
+	max = 0;
+	while (s[++i] != NULL)
 	{
-
-		(*s)[i] = (char*)malloc((sizeof(char) * size + 1));
-		ft_memset((*s)[i], '.', size);
-		(*s)[i][size] = '\0';
+		j = -1;
+		while (s[i][++j])
+		{
+			if (s[i][j] != '.' && s[i][j] != '\n')
+			{
+				if (i > j && i > max)
+					max = i;
+				if (j >= i && j > max)
+					max = j;
+			}
+		}
 	}
-	(*s)[size] = NULL;
+	i = -1;
+	while (++i <= max)
+	{
+		write(1, s[i], max + 1);
+		write(1, "\n", 1);
+	}
 }
 
-int		*newlist(int len)
+char				**newtab(int size)
+{
+	int		i;
+	char	**s;
+
+	i = -1;
+	if (!(s = (char**)malloc(sizeof(char*) * size + 1)))
+		return (NULL);
+	while (++i < size)
+	{
+		s[i] = ft_strnew(size);
+		ft_memset(s[i], '.', size);
+		s[i][size] = '\0';
+	}
+	s[size] = NULL;
+	return (s);
+}
+
+int				*newlist(int len)
 {
 	int	i;
 	int	*list;
@@ -42,29 +71,21 @@ int		*newlist(int len)
 	return (list);
 }
 
-int		freetab(char ***s)
+void			freetab(char **s)
 {
 	int i;
-	int len;
 
-	len = 0;
-	i = 0;
-	if (*s == NULL)
-		return (0);
-	while ((*s)[len] != NULL)
-		++len;
-	while (i < len)
+	i = -1;
+	if (s)
 	{
-		ft_bzero((*s)[i], len);
-		free((*s)[i]);
-		++i;
+		while (s[++i] != 0)
+			ft_memdel((void**)&(s[i]));
+		free(s);
+		s = NULL;
 	}
-	free(*s);
-	*s = NULL;
-	return (0);
 }
 
-static int ft_sqrt(int n)
+static int		ft_sqrt(int n)
 {
 	int i;
 
@@ -74,30 +95,45 @@ static int ft_sqrt(int n)
 	return (i);
 }
 
-int		solver(char tetris[28][4][4], int len, char **s)
+int				high_sqrt(int n)
+{
+	int size;
+
+	size = 2;
+	while (size * size < n)
+		size++;
+	return (size);
+}
+
+int				solver(char tetris[28][4][4], int len, char **s)
 {
 	int		max;
 	int		*list;
-	int size;
-	int i;
-	int j;
+	int		i;
+	int		j;
+	int put[4];
 
 	i = ft_sqrt(len * 4);
-	list = newlist(len);
-	newtab(&s, i + 4);
-	i = 6;
-	while (!backtrack(tetris, s, list, i))
+	max = ft_sqrt(len * 4);
+	while (1)
 	{
-        printf("checked size %d\n", i);
-		freetab(&s);
-		newtab(&s, i + 4);
-		free(list);
+		if (!(s = newtab(i + 4)))
+			return (0);
 		list = newlist(len);
+		put[0] = -1;
+		put[1] = -1;
+		put[2] = -1;
+		put[3] = max;
+		//printf("%d\n", );
+		if (backtrack(tetris, s, list, put) == 1)
+			break ;
+		freetab(s);
+		free(list);
+		++max;
 		++i;
 	}
-	i = -1;
-	while (s[++i])
-		ft_putendl(s[i]);
+	printresult(s, -1);
+	freetab(s);
 	free(list);
-	return (0);
+	return (1);
 }

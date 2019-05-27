@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 16:18:08 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 14:18:20 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:42:22 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 int	to_corner(char s[4][4])
 {
-	int i;
-	int j;
-	int *coo;
+	int	i;
+	int	j;
+	int	*coo;
 
+	i = -1;
 	if (!(coo = getedges(s)))
 		return (0);
-	i = -1;
-
 	if (coo[0] == 0 && coo[2] == 0)
 	{
 		free(coo);

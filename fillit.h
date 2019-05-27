@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 14:17:15 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/23 18:43:48 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 11:40:17 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 int main(int argc, char **argv);
 int parser(char buf[544], int buflen);
-int backtrack(char ttr[28][4][4], char **s, int *list, int max);
+int				backtrack(char ttr[28][4][4], char **s, int *list, int i[4]);
 int		*newlist(int len);
-void	newtab(char ***s, int size);
+char**	newtab(int size);
 char	**cpytab(char **s);
 int		*cpylist(int *list);
-int		freetab(char ***s);
+void		freetab(char **s);
 char	**addtab(char **s, char in[4][4], int n, int m);
 int *getedges(char s[4][4]);
 int		solver(char tetris[28][4][4], int len, char **s);
