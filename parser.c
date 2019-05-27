@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 19:08:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 14:00:11 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 14:04:01 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,8 @@ static int		checktetri(char buf[544], int buflen, int diez)
 		if (buflen == 0)
 			break ;
 		buflen--;
-		if (i != 3)
-			if (buf[i * 5 + j] != '\n')
-				return (0);
+		if (buf[i * 5 + j] != '\n')
+			return (0);
 	}
 	if (diez != 4)
 		return (0);
@@ -115,20 +114,20 @@ int				parser(char buf[544], int buflen)
 
 	len = 0;
 	i = 0;
-	if (((buflen - 19) % 21) != 0)
+	if (((buflen - 20) % 21) != 0)
 		return (0);
 	while (buflen - i > 0)
 	{
-		if (!checktetri(buf + i, 19, 0))
+		if (!checktetri(buf + i, 20, 0))
 			return (0);
 		if (!checkfig(buf + i))
 			return (0);
 		len += 1;
-		i += 19;
+		i += 20;
 		if (buflen - i == 0)
 			return (len);
-		if (buf[i] == '\n' && buf[i + 1] == '\n')
-			i += 2;
+		if (buf[i] == '\n')
+			i += 1;
 		else
 			return (0);
 	}
