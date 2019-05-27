@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:17:25 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 13:07:08 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:29:59 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char				**newtab(int size)
 	return (s);
 }
 
-int				*newlist(int len)
+int					*newlist(int len)
 {
 	int	i;
 	int	*list;
@@ -71,7 +71,7 @@ int				*newlist(int len)
 	return (list);
 }
 
-void			freetab(char **s)
+void				freetab(char **s)
 {
 	int i;
 
@@ -85,23 +85,11 @@ void			freetab(char **s)
 	}
 }
 
-static int		ft_sqrt(int n)
-{
-	int i;
-
-	i = 2;
-	while (i * i < n)
-		++i;
-	return (i);
-}
-
-int				solver(char tetris[28][4][4], int len, char **s)
+int					solver(char tetris[28][4][4], int len, char **s)
 {
 	int		max;
 	int		*list;
 	int		i;
-	int		j;
-	int put[4];
 
 	i = ft_sqrt(len * 4);
 	max = ft_sqrt(len * 4);
@@ -111,11 +99,6 @@ int				solver(char tetris[28][4][4], int len, char **s)
 		if (!(s = newtab(i + 4)))
 			return (0);
 		list = newlist(len);
-		put[0] = -1;
-		put[1] = -1;
-		put[2] = -1;
-		put[3] = max;
-		//printf("%d\n", );
 		if (backtrack(tetris, s, list, max) == 1)
 			break ;
 		freetab(s);

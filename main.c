@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 19:07:32 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/25 22:12:24 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:24:33 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 static int		ft_error(void)
 {
 	printf("out");
-	return (0);
-}
-
-static int		ft_checklen(ssize_t nb)
-{
-	if (nb > 544 || nb < 19 || ((((nb - 19) % 21) > 0)))
-		return (1);
 	return (0);
 }
 
@@ -80,6 +73,9 @@ int				main(int argc, char **argv)
 	char	**s;
 	int		len;
 
+	s = NULL;
+	if (argc != 2)
+		return (ft_error());
 	if ((buflen = read(open(argv[1], O_RDONLY), buf, 546)) > 544 || buflen < 19)
 		return (ft_error());
 	if (!(len = parser(buf, buflen)))

@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:40:08 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/25 22:14:25 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:33:50 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	**cpytab(char **s)
 int		*cpylist(int *list)
 {
 	int	*new;
-	int len;
 	int i;
 
 	i = -1;
@@ -73,4 +72,31 @@ char	**addtab(char **s, char in[4][4], int n, int m)
 		}
 	}
 	return (s);
+}
+
+int		ft_sqrt(int n)
+{
+	int i;
+
+	i = 2;
+	while (i * i < n)
+		++i;
+	return (i);
+}
+
+char	getletter(char s[4][4])
+{
+	int i;
+	int j;
+
+	i = -1;
+	j = 0;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+			if (s[i][j] != '.')
+				return (s[i][j]);
+	}
+	return (0);
 }

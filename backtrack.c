@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 19:01:33 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 13:07:36 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:33:30 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,6 @@ static int		isemp(int *list)
 	return (1);
 }
 
-static int		*rmpos(int *list, int pos)
-{
-	int *out;
-
-	if (!(out = cpylist(list)))
-		return (NULL);
-	out[pos] = 0;
-	return (out);
-}
-
-static char		getletter(char s[4][4])
-{
-	int i;
-	int j;
-
-	i = -1;
-	j = 0;
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-			if (s[i][j] != '.')
-				return (s[i][j]);
-	}
-	return (0);
-}
-
 static void		remtab(char ***s, char a)
 {
 	int i;
@@ -84,6 +57,12 @@ static void		remtab(char ***s, char a)
 	}
 }
 
+static void		repl(char ttr[28][4][4], char **s, int *list, int n)
+{
+	list[n] = 1;
+	remtab(&s, getletter(ttr[n]));
+}
+
 int				backtrack(char ttr[28][4][4], char **s, int *list, int max)
 {
 	int i[2];
@@ -94,24 +73,17 @@ int				backtrack(char ttr[28][4][4], char **s, int *list, int max)
 		return (1);
 	while (list[++n] != -1)
 	{
-		if (list[n])
+		if (list[n] && (i[0] = -1) == -1)
 		{
-			i[0] = -1;
-			while (++i[0] < max && s[i[0]] != NULL)
+			while (++i[0] < max && s[i[0]] != NULL && (i[1] = -1) == -1)
 			{
-				i[1] = -1;
 				while (++i[1] < max && s[i[0]][i[1]])
 				{
 					if (checktab(s, ttr[n], i, max))
 					{
-						list[n] = 0;
-						if (backtrack(ttr, s, list, max))
+						if (!(list[n] = 0) && backtrack(ttr, s, list, max))
 							return (1);
-						else
-						{
-							list[n] = 1;
-							remtab(&s, getletter(ttr[n]));
-						}
+						repl(ttr, s, list, n);
 					}
 				}
 			}

@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 19:08:39 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/25 22:12:27 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:18:55 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 static int		down(char buf[544], int xfirst)
 {
-			if ((buf[xfirst + 5 + 1] == '#' && buf[xfirst + 5 + 1 + 1] == '#')
-				|| (buf[xfirst + 5 + 1] == '#'
-					&& buf[xfirst + 5 + 1 + 5] == '#')
-				|| (buf[xfirst + 5 + 5] == '#'
-					&& buf[xfirst + 5 + 5 + 1] == '#')
-				|| (buf[xfirst + 5 + 5] == '#'
-					&& buf[xfirst + 5 + 5 + 5] == '#')
-				|| (buf[xfirst + 5 - 1] == '#'
-					&& buf[xfirst + 5 - 1 + 5] == '#')
-				|| (buf[xfirst + 5 - 1] == '#'
-					&& buf[xfirst + 5 + 1] == '#')
-				|| (buf[xfirst + 5 - 1] == '#'
-					&& buf[xfirst + 5 + 5] == '#')
-				|| (buf[xfirst + 5 + 1] == '#'
-					&& buf[xfirst + 5 + 5] == '#'))
-			return (1);
-		return (0);
+	if ((buf[xfirst + 5 + 1] == '#' && buf[xfirst + 5 + 1 + 1] == '#')
+			|| (buf[xfirst + 5 + 1] == '#'
+				&& buf[xfirst + 5 + 1 + 5] == '#')
+			|| (buf[xfirst + 5 + 5] == '#'
+				&& buf[xfirst + 5 + 5 + 1] == '#')
+			|| (buf[xfirst + 5 + 5] == '#'
+				&& buf[xfirst + 5 + 5 + 5] == '#')
+			|| (buf[xfirst + 5 - 1] == '#'
+				&& buf[xfirst + 5 - 1 + 5] == '#')
+			|| (buf[xfirst + 5 - 1] == '#'
+				&& buf[xfirst + 5 + 1] == '#')
+			|| (buf[xfirst + 5 - 1] == '#'
+				&& buf[xfirst + 5 + 5] == '#')
+			|| (buf[xfirst + 5 + 1] == '#'
+				&& buf[xfirst + 5 + 5] == '#'))
+		return (1);
+	return (0);
 }
+
 static int		checkbasic(char buf[544], int xfirst, int xlast)
 {
 	if ((buf[xfirst + 1] == '#' && buf[xfirst + 5] == '#'))

@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 14:17:15 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 13:07:12 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:33:09 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <unistd.h>
 
 int main(int argc, char **argv);
+int			ft_sqrt(int n);
 int parser(char buf[544], int buflen);
 int				backtrack(char ttr[28][4][4], char **s, int *list, int max);
 int		*newlist(int len);
@@ -32,5 +33,6 @@ int		solver(char tetris[28][4][4], int len, char **s);
 int	to_corner(char s[4][4]);
 int righter(char s[4][4]);
 int lower(char s[4][4]);
+char		getletter(char s[4][4]);
 
 # endif
