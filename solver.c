@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:17:25 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 13:29:59 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:54:42 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int					*newlist(int len)
 	int	i;
 	int	*list;
 
-	list = (int*)malloc(sizeof(int) * (len + 1));
+	if (!(list = (int*)malloc(sizeof(int) * (len + 1))))
+		return (NULL);
 	i = -1;
 	while (++i < len)
 		list[i] = 1;
@@ -93,12 +94,12 @@ int					solver(char tetris[28][4][4], int len, char **s)
 
 	i = ft_sqrt(len * 4);
 	max = ft_sqrt(len * 4);
-	printf("max %d\n", max);
 	while (1)
 	{
 		if (!(s = newtab(i + 4)))
 			return (0);
-		list = newlist(len);
+		if (!(list = newlist(len)))
+			return (0);
 		if (backtrack(tetris, s, list, max) == 1)
 			break ;
 		freetab(s);
