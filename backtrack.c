@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 19:01:33 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 12:07:28 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:07:36 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ static void		remtab(char ***s, char a)
 	}
 }
 
-int				backtrack(char ttr[28][4][4], char **s, int *list, int i[4])
+int				backtrack(char ttr[28][4][4], char **s, int *list, int max)
 {
-	int n = i[2];
+	int i[2];
+	int n;
 
+	n = -1;
 	if (isemp(list))
 		return (1);
 	while (list[++n] != -1)
@@ -95,15 +97,15 @@ int				backtrack(char ttr[28][4][4], char **s, int *list, int i[4])
 		if (list[n])
 		{
 			i[0] = -1;
-			while (++i[0] < i[3] && s[i[0]] != NULL)
+			while (++i[0] < max && s[i[0]] != NULL)
 			{
 				i[1] = -1;
-				while (++i[1] < i[3] && s[i[0]][i[1]])
+				while (++i[1] < max && s[i[0]][i[1]])
 				{
-					if (checktab(s, ttr[n], i, i[3]))
+					if (checktab(s, ttr[n], i, max))
 					{
 						list[n] = 0;
-						if (backtrack(ttr, s, list, i))
+						if (backtrack(ttr, s, list, max))
 							return (1);
 						else
 						{

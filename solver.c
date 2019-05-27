@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 14:17:25 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 11:58:53 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:07:08 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,6 @@ static int		ft_sqrt(int n)
 	return (i);
 }
 
-int				high_sqrt(int n)
-{
-	int size;
-
-	size = 2;
-	while (size * size < n)
-		size++;
-	return (size);
-}
-
 int				solver(char tetris[28][4][4], int len, char **s)
 {
 	int		max;
@@ -115,6 +105,7 @@ int				solver(char tetris[28][4][4], int len, char **s)
 
 	i = ft_sqrt(len * 4);
 	max = ft_sqrt(len * 4);
+	printf("max %d\n", max);
 	while (1)
 	{
 		if (!(s = newtab(i + 4)))
@@ -125,7 +116,7 @@ int				solver(char tetris[28][4][4], int len, char **s)
 		put[2] = -1;
 		put[3] = max;
 		//printf("%d\n", );
-		if (backtrack(tetris, s, list, put) == 1)
+		if (backtrack(tetris, s, list, max) == 1)
 			break ;
 		freetab(s);
 		free(list);

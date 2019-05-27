@@ -6,7 +6,7 @@
 /*   By: stherkil <stherkil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 14:17:15 by stherkil          #+#    #+#             */
-/*   Updated: 2019/05/27 11:40:17 by stherkil         ###   ########.fr       */
+/*   Updated: 2019/05/27 13:07:12 by stherkil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int main(int argc, char **argv);
 int parser(char buf[544], int buflen);
-int				backtrack(char ttr[28][4][4], char **s, int *list, int i[4]);
+int				backtrack(char ttr[28][4][4], char **s, int *list, int max);
 int		*newlist(int len);
 char**	newtab(int size);
 char	**cpytab(char **s);
